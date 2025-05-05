@@ -4,7 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System.Linq;
 public enum GameState
 {
     Intro,
@@ -70,8 +70,24 @@ public class GameManager : MonoBehaviour
             StartCoroutine(ShowIntro());
             gallery_scene_first_time = false;
         }
-        
+
         player.transform.position = galleryReturnPosition.position;
+    }
+
+    private bool showOut = false;
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "gallery_scene" && level1_completed && level2_completed && level3_completed)
+        {
+            showOut = true;
+        }   
+
+        if (showOut)
+        {
+            StartCoroutine(ShowOutro());
+            showOut = false;
+            level1_completed = false;
+        }
     }
 
     IEnumerator ShowIntro()
@@ -93,6 +109,13 @@ public class GameManager : MonoBehaviour
 
     }
 
+    IEnumerator ShowOutro(){
+        dialoguePanel.SetActive(true);
+        typeWriterEffect.StartTyping("That’s all of them. Guess I can leave now.");
+        yield return new WaitUntil(() => typeWriterEffect.isTypingFinished);
+        yield return new WaitForSeconds(1);
+        dialoguePanel.SetActive(false);
+    }
 
 
 public bool CanEnterLevel(int id)
@@ -110,9 +133,9 @@ public void MarkLevelCompleted(int id)
 {
     switch (id)
     {
-        case 1: level1_completed = true; break;
-        case 2: level2_completed = true; break;
-        case 3: level3_completed = true; break;
+        case 1: level1_completed = false; break;
+        case 2: level2_completed = false; break;
+        case 3: level3_completed = false; break;
     }
 }
 
@@ -122,6 +145,10 @@ private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 {
     if (scene.name == "gallery_scene")
     {
+
+        typeWriterEffect = GameObject.Find("Canvas").GetComponent<TypewriterEffect>();
+        dialoguePanel = Resources.FindObjectsOfTypeAll<GameObject>()
+        .FirstOrDefault(go => go.name == "Panel");
         paintingAudios.Clear();
 
         var tablo1 = GameObject.Find("girilecektablo_1");
@@ -146,6 +173,8 @@ private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
                     audio.Play();
             }
         }
+
+
     }
 }
 

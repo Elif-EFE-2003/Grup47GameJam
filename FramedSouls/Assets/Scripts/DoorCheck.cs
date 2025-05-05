@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -64,7 +62,8 @@ public class DoorCheck : MonoBehaviour
 
         yield return StartCoroutine(FadeToBlack());
         finalText.gameObject.SetActive(true);
-        Time.timeScale = 0;
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("UI_Scene");
 
 
     }

@@ -94,6 +94,5 @@ public class KeyManager : MonoBehaviour
         //PlayerPrefs.Save();
 
         // Sahneyi sıfırla
-        SceneManager.LoadScene(0);
     }
 }

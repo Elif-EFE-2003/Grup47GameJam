@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 5c76fbd4c0378944a9b4a1f00bba3f50
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: 3
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Gloria Hallelujah
+  fallbackFontReferences: []
+  customCharacters: "ABC\xC7DEFG\u011EHI\u0130JKLMNO\xD6PRS\u015ETU\xDCVWXYZabc\xE7defg\u011Fh\u0131ijklmno\xF6prs\u015Ftu\xFCvwxyz"
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
